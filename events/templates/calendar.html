@@ -1,0 +1,30 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<h1 class = "text-3xl font-semibold mx-5 mt-5">Event Calendar</h1>
+<div id="calendar-tools" class="px-5 pt-5 pb-2 w-full grid grid-rows-1 grid-cols-2">
+	<div class="text-center"><a href={{ previous_month }}>Previous month</a></div>
+	<div class="text-center"><a href={{ next_month }}>Next month</a></div>
+</div>
+<div id="calendar-view" class="px-5 w-full grid grid-rows-1 grid-cols-1">
+	<div>{{ calendar }}</div>
+</div>
+
+<div class="w-full p-5">
+    <table id="event-view" class="table-fixed border-collapse w-full">
+        {% for event in event_list %}
+            <tr class="border border-x-0 border-gray-300">
+                <td id="event-date" class="p-2 text-center w-1/2">
+                    <strong>{{ event.day }}</strong><br>
+                    From {{ event.start_time }} to {{event.end_time}}
+                </td>
+                <td id="event-info" class="p-2">
+                    <strong>{{ event.name }}</strong><br>
+                    {{ event.description }} <br>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

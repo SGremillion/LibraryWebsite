@@ -1,0 +1,30 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<div id="block-content" class="p-5 max-w-[100vw]">
+    <h1 class="text-3xl font-semibold my-4">Language: {{ language }} </h1>
+
+    <div style="margin-left:20px;margin-top:20px">
+        {% for book in language.book_set.all %}
+            <div class="grid grid-cols-2 grid-rows-1 my-10 relative min-h-fit">
+                <div id="image-column" class="w-3/4 pr-6 justify-self-center place-items-center relative" style="min-height:300px">
+                    {% if book.image %}
+                    <a href="{{book.get_absolute_url }}"><img src="{{book.image}}" class="aspect-auto max-h-full absolute left-1/2 transform -translate-x-1/2 top-1/2 -translate-y-1/2"></a>
+                    {% endif %}
+                </div>
+
+                <div id="info-column" class="w-full h-full">
+                    <a href="{{book.get_absolute_url }}"><p><strong>{{ book.title }}</strong></p></a>
+                    <p><strong>Author:</strong> <a href="{{book.author.get_absolute_url }}">{{ book.author }}</a></p>
+                    <p><strong>Summary:</strong> {{ book.summary }}</p>
+                    <p><strong>ISBN:</strong> {{ book.isbn }}</p> 
+                    <p><strong>Genre:</strong> {{ book.genre.all|join:", " }}</p>
+                </div>
+            </div>
+            <hr>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

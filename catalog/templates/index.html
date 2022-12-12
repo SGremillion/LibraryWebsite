@@ -1,0 +1,32 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+    <div id="block-content" class="p-5 max-w-[100vw]">
+
+        <h1 class="text-3xl font-semibold my-4">Book of the Day Collection</h1>
+
+        <div class="grid grid-cols-2 grid-rows-1 my-10 relative min-h-fit">
+
+            <div id="image-column" class="w-3/4 pr-6 justify-self-center place-items-center relative" style="min-height:500px">
+                {% if random_book.image %}
+                    <img src="{{random_book.image}}" alt="{{random_book.title}}" class="aspect-auto max-h-full absolute left-1/2 transform -translate-x-1/2 top-1/2 -translate-y-1/2">
+                {% endif %}
+            </div>
+
+            <div id="info-column" class="w-full h-full">
+                <p><strong>Title:</strong> <a href="{{ random_book.get_absolute_url }}">{{ random_book.title }}</a></p>
+                <p><strong>Genre:</strong> {{ random_book.genre.all|join:", " }}</p>
+                <p><strong>Summary:</strong> {{ random_book.summary }}</p>
+            </div>
+        </div>
+
+        <hr>
+        <p class="my-2"><strong>Contact Us:</strong> Name, name@email</p>
+        <p class="my-2"><strong>Mailing Address:</strong> Street Number, City, State, Zip Code</p>
+        <p class="my-2"><strong>Operating Hours:</strong> Monday – Saturday:  10:00 AM – 5:00 PM </p>
+
+        <hr>
+        <p class="my-4">You have visited this page {{ num_visits }} time{{ num_visits|pluralize }}.</p>
+
+{% endblock %}

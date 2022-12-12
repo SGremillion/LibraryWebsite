@@ -1,0 +1,41 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+    <div id="block-content" class="m-5 max-w-[100vw]">
+        <h1 class = "text-3xl font-semibold my-4">Book List</h1>
+
+        <table class="shadow table-fixed border-collapse w-full">
+            <tbody>
+                {% if book_list %}
+                    {% for book in book_list %}
+                        {% if forloop.counter0|divisibleby:2 %}
+                            <tr class="border border-x-0 border-gray-300">
+                                <td class="text-center w-[15%]">
+                                    <img src="{{book.image}}" alt="{{book.title}}" style="height:100px; width:75px;" class="m-auto">
+                                </td>
+                                <td class="w-[35%]">
+                                    <a href="{{ book.get_absolute_url }}"><strong>{{ book.title }}</strong></a>
+                                    <br><a href="{{ book.author.get_absolute_url }}">{{ book.author }}</a>
+                                    <br>Genre: {{ book.genre.all|join:", " }}
+                                    <br>Copies: {{ book.bookinstance_set.all.count }}
+                                </td> 
+                        {% else %}
+                                <td class="text-center w-[15%]">
+                                    <img src="{{book.image}}" alt="{{book.title}}" style="height:100px; width:75px;" class="m-auto">
+                                </td>
+                                <td class="w-[35%]">
+                                    <a href="{{ book.get_absolute_url }}"><strong>{{ book.title }}</strong></a>
+                                    <br><a href="{{ book.get_absolute_url }}">{{ book.author }}</a>
+                                    <br>Genre: {{ book.genre.all|join:", " }}
+                                    <br>Copies: {{ book.bookinstance_set.all.count }}
+                                </td> 
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

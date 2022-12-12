@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+    <div id="block-content" class="m-5 max-w-[100vw]">
+        <h1 class="text-3xl font-semibold my-4">Delete Book</h1>
+
+        <p>Are you sure you want to delete the book: {{ book }}?</p>
+
+        <form action="" method="POST">
+          {% csrf_token %}
+          <input type="submit" action="" value="Yes, delete.">
+        </form>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+    <div id="block-content" class="m-5 max-w-[100vw]">
+        <h1 class = "text-3xl font-semibold my-4">Author List</h1>
+
+        <table class="shadow table-fixed border-collapse w-full">
+            <tbody>
+                {% if author_list %}
+                    {% for author in author_list %}
+                        {% if forloop.counter0|divisibleby:2 %}
+                            <tr class="border border-x-0 border-gray-300">
+                                <td class="text-center w-[15%]">
+                                    <img src="{{author.image}}" alt="{{author.first_name}} {{author.last_name}}" style="height:100px; width:75px;" class="m-auto">
+                                </td>
+                                <td class="w-[35%]">
+                                    <a href="{{ author.get_absolute_url }}"><strong>{{ author }}</strong></a>
+                                    <br>Birth: {{ author.date_of_birth }}
+                                    {% if author.date_of_death %}
+                                        <br>Death: {{ author.date_of_death }}
+                                    {% endif %}
+                                </td> 
+                        {% else %}
+                                <td class="text-center w-[15%]">
+                                    <img src="{{author.image}}" alt="{{author.first_name}} {{author.last_name}}" style="height:100px; width:75px;" class="m-auto">
+                                </td>
+                                <td class="w-[35%]">
+                                    <a href="{{ author.get_absolute_url }}"><strong>{{ author }}</strong></a>
+                                    <br>Birth: {{ author.date_of_birth }}
+                                    {% if author.date_of_death %}
+                                        <br>Death: {{ author.date_of_death }}
+                                    {% endif %}
+                                </td> 
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

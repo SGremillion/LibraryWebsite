@@ -1,0 +1,28 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <div id="block-content" class="m-5 max-w-[100vw]">
+        <h1 class = "text-3xl font-semibold my-4">Genre List</h1>
+
+        <table class="shadow border-collapse min-w-[500px] w-[50%]">
+            <thead>
+                <tr>
+                    <th class="bg-gray-300 border border-gray-300 dark:bg-gray-800">Genre</th>
+                    <th class="bg-gray-300 border border-gray-300 dark:bg-gray-800">Quantity</th>
+                </tr>
+            </thead> 
+
+            <tbody>
+                {% if genre_list %}
+                    {% for genre in genre_list %}
+                        <tr>
+                            <td class="border border-gray-300 dark:border-gray-500"><a href="{{ genre.get_absolute_url }}">{{ genre }}</a></td>
+                            <td class="border border-gray-300">{{genre.book_set.all.count}}</td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

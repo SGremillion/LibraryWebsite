@@ -1,0 +1,26 @@
+{% extends 'base_generic.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div id="block-content" class="m-5 max-w-[100vw]s">
+  <div class="content-section">
+
+      <form method="POST" novalidate>
+          {% csrf_token %}
+          <fieldset class="form-group">
+              <legend class="border-bottom mb-4">Contact Us</legend>
+              <p class="mr-96"> Contact us directly using the form below. Please write your name, email address and a message below if you have any questions. One of our staff members will be happy to contact you directly and answer your questions as soon as possible.
+		</p><br>
+        <div class="form-group col-md-2 mb-0">
+          {{ form|crispy}}
+        </div>
+          </fieldset><br>
+          <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Submit</button>
+          </div>
+      </form>
+  </div>
+  </div>
+
+{% endblock content %}
+
